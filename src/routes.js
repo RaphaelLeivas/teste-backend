@@ -10,7 +10,7 @@ const dadosSalvos = [ // vetor que salva tudo
 {
     id: "abc123JHK1",
     idade: 20,
-    nome: "Miranda"
+    nome: "Patricia Obendorf"
 }];
 
 routes.get("/users", (req, res) => {
