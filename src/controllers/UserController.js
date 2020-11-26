@@ -45,11 +45,23 @@ module.exports = {
             const result = await UsersModel.uptadeById(targetId, newUser);
 
             console.log("User uptaded successfully.");
-            return res.status(200).json({ result }); // mostra o novo user atualizado
+            return res.status(200).json({ result }); // mostra o numero de entradas atualizadas
             
         } catch (error) {
             console.warn("Internal server error while attempting to uptade user:", error);
             return res.status(500).send("Internal server error while attempting to uptade user.");
+        }
+    },
+
+    async delete(req, res){
+        try {
+            const targetId = req.params.userId;
+            const result = await UsersModel.deleteById(targetId);
+
+            return res.status(200).send("User deleted successfully.");
+        } catch (error) {
+            console.warn("Internal server error while attempting to delete user:", error);
+            return res.status(500).send("Internal server error while attempting to delete user.");
         }
     }
 };
