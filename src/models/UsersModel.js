@@ -7,8 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 * Uptade
 * Delete */
 module.exports = { // esta exportando um objeto JavaScript (JSON)
-    async create(user) {
-        const newId = uuidv4(); // cria id aleatorio com a uuid
+    async create(user) { // 'user' é o NOME DA TABELA criada nas migrations
+        const newId = uuidv4(); // cria id aleatorio com a biblioteca uuid
         user.user_id = newId;
         
         await connection("user").insert(user); // inserindo um novo users na migration (CREATE)
@@ -16,22 +16,21 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
     },
 
     async getById(users) { // Read
-        const result = await connection("users")
+        const result = await connection("user")
             .where(users.user_id)
             .select("*");
         return result;
     },
 
-    async uptadeById(targetIndex, users) {
-        const result = await connection("users")
-            .where(targetIndex)
-            .uptade(users);
+    async uptadeById(targetId, user) {
+        const result = await connection("user").where({ user_id: targetId }).update(user);
+
         return result;
     },
 
-    async deleteById(targetIndex) {
-        const result = await connection("users")
-            .where(targetIndex)
+    async deleteById(targetId) {
+        const result = await connection("user")
+            .where({ user_id: targetId })
             .delete();
         return result;
     }
