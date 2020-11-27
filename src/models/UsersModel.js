@@ -31,7 +31,7 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
         return result;
     },
 
-    async uptadeById(targetId, user) {
+    async updateById(targetId, user) {
         const result = await connection("user")
         .where({ user_id: targetId })
         .update(user);

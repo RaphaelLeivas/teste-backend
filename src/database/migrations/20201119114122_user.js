@@ -2,6 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('user', function(table){
       table.string('user_id').primary().notNullable();
       table.string('username').notNullable();
+      table.unique('username');
       table.string('password').notNullable();
   });
 };
