@@ -22,15 +22,12 @@ const dadosSalvosUsers = [
     }
 ];
 
-// Abaixo estão as 4 funções CRUD da rota /users
-routes.get("/users", (req, res) => { 
-    const query = req.query; // usado posteriormente para filtros
+// 4 funções CRUD da rota /users
+routes.get("/users/:userId", UserController.getByUser);
+routes.post("/users", UserController.create); 
+routes.put("/users/:userId", UserController.uptade); // o ':' indica que é params da rota 
+routes.delete("/users/:userId", UserController.delete); 
 
-    res.status(200).json(dadosSalvos);
-});
-
-routes.post("/users", UserController.create); // funcionando
-routes.put("/users/:userId", UserController.uptade); // o ':' indica que é params da rota - Funcionando
-routes.delete("/users/:userId", UserController.delete); // funcionando
+// 4 funções CRUD da rota /personagem
 
 module.exports = routes;

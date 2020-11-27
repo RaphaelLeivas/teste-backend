@@ -15,10 +15,19 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
         return newId;
     },
 
-    async getById(users) { // Read
+    async getById(user) { // Read
         const result = await connection("user")
-            .where(users.user_id)
+            .where(user.user_id) // isso aqui ta errado, nao funciona
+            .select("*")
+            .first();
+        return result;
+    },
+
+    async getByUserWithFilters(targetId, {otherFilters}){
+        const result = await connection("user")
+            .where({username: targetId}) // filtrando pelo username, targetId recebe o username via params
             .select("*");
+
         return result;
     },
 
