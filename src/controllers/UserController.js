@@ -1,11 +1,16 @@
 const UsersModel = require("../models/UsersModel");
+const firebase = require("../utils/Firebase");
 
 module.exports = {
     async create(req, res) {
         try {
-            const newUser = req.body; // os dados do novo user chegam da requisicao
-            const result = await UsersModel.create(newUser); // o result recebe o id do novo user criado
+            const user = req.body; // os dados do novo user chegam da requisicao
+            
+            const uid = await firebase.createNewUser(user.email, user.password);
+            //delete user.password;
+            user.firebase_id = uid; // user e o nome da tabela (migration)
 
+            const result = await UsersModel.create(user); // o result recebe o id do novo user criado
             console.log("New user created successfully.");
             return res.status(200).json({newId: result}); // printa o novo id criado
         } catch (error) {

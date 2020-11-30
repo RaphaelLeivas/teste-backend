@@ -33,7 +33,7 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
 
     async updateById(targetId, user) {
         const result = await connection("user")
-        .where({ user_id: targetId })
+        .where({ username: targetId })
         .update(user);
 
         return result;
@@ -41,7 +41,7 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
 
     async deleteById(targetId) {
         const result = await connection("user")
-            .where({ user_id: targetId })
+            .where({ username: targetId })
             .delete();
         return result;
     }

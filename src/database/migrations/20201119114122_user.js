@@ -3,7 +3,10 @@ exports.up = function(knex) {
       table.string('user_id').primary().notNullable();
       table.string('username').notNullable();
       table.unique('username');
-      table.string('password').notNullable();
+      table.string('email').notNullable();
+      table.string('password');
+
+      table.string('firebase_id').notNullable();
   });
 };
 
