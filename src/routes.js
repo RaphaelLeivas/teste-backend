@@ -4,10 +4,16 @@ const routes = express.Router();
 // import dos controllers
 const UserController = require("./controllers/UserController");
 const PersonagemController = require("./controllers/PersonagemController");
+const SessionController = require("./controllers/SessionController");
+
+const auth = require("./middlewares/authentication");
 
 // import dos validators
 const UserValidator = require("./validators/UserValidator");
 const PersonagemValidator = require("./validators/PersonagemValidator");
+
+// sessão
+routes.post("/login", SessionController.signIn);
 
 // rota /users
 routes.get("/users/:userId", UserValidator.getByUser, UserController.getByUser);

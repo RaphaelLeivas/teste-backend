@@ -31,6 +31,14 @@ module.exports = { // esta exportando um objeto JavaScript (JSON)
         return result;
     },
 
+    async getByFields(fields){
+        const result = await connection("user")
+            .where(fields)
+            .select("*")
+            .first();
+        return result;
+    },
+
     async updateById(targetId, user) {
         const result = await connection("user")
         .where({ username: targetId })
